@@ -1,5 +1,5 @@
 import os
-import sys, getopt
+import sys
 import json
 import csv
 import swiftclient
@@ -37,4 +37,5 @@ def generate_csv(container, outfile):
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print "Usage: {} <container_name> <output_csv_file>".format(sys.argv[0])
+        exit(-1)
     generate_csv(container=sys.argv[1], outfile=sys.argv[2])
