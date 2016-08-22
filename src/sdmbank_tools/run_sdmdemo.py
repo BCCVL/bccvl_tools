@@ -3,8 +3,8 @@ import sys, os
 import urllib
 import csv
 
-SDMDEMO_URL = "{}/bccvl/experiments/API/em/v1/demosdm"
-ALA_SPECIES_DL_URL = "http://bie.ala.org.au/ws/download?q=rank:species&fields=guid,scientificName&fq=rk_kingdom:{}"
+SDMDEMO_URL = "{bccvlurl}/experiments/API/em/v1/demosdm"
+ALA_SPECIES_DL_URL = "http://bie.ala.org.au/ws/download?q=rank:species&fields=guid,scientificName&fq=rk_kingdom:{kingdom}"
 
 def run_sdmdemo(bccvl_url, kingdom_name):
  
@@ -13,7 +13,7 @@ def run_sdmdemo(bccvl_url, kingdom_name):
     id_list = []
 
     try:
-        species_file, _ = urllib.urlretrieve(ALA_SPECIES_DL_URL.format(kingdom_name))
+        species_file, _ = urllib.urlretrieve(ALA_SPECIES_DL_URL.format(kingdom=kingdom_name))
         with open(species_file, 'r') as csvfile:
             csv_reader = csv.reader(csvfile)
 
@@ -21,7 +21,7 @@ def run_sdmdemo(bccvl_url, kingdom_name):
             next(csv_reader)
 
             # Run sdmdemo for each species in the kingdom.
-            demosdm_url = SDMDEMO_URL.format(bccvl_url)
+            demosdm_url = SDMDEMO_URL.format(bccvlurl=bccvl_url)
             username = os.environ.get('BCCVL_USERNAME')
             password = os.environ.get('BCCVL_PASSWORD')
 
