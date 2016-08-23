@@ -22,7 +22,6 @@ def generate_csv(container, outfile):
         csv_writer = csv.writer(csv_file)
         for fdata in conn.get_container(container)[1]:
             if fdata['name'].endswith('proj_metadata.json'):
-                print fdata['name']
                 obj_tuple = conn.get_object(container, fdata['name'])    
                 data = json.loads(obj_tuple[1])
 
@@ -34,8 +33,11 @@ def generate_csv(container, outfile):
 
 
 # Generate a csv file with projection metatadata for species found in the specified container.
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 3:
         print "Usage: {} <container_name> <output_csv_file>".format(sys.argv[0])
         exit(-1)
     generate_csv(container=sys.argv[1], outfile=sys.argv[2])
+
+if __name__ == "__main__":
+    main()
