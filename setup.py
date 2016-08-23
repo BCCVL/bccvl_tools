@@ -30,8 +30,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'generate_sdmbank_md = sdmbank_tools.generate_sdmbank_metadata:generate_csv',
-            'run_sdmdemo = sdmbank_tools.run_sdmdemo:run_sdmdemo',
+            'generate_sdmbank_md = bccvl_tools.sdmbank_tools.generate_sdmbank_metadata:generate_csv',
+            'run_sdmdemo = bccvl_tools.sdmbank_tools.run_sdmdemo:run_sdmdemo',
         ]
     }
     )
